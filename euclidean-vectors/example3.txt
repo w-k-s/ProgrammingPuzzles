@@ -1,0 +1,13 @@
+In:
+x       
+|       
+|<-----^
+|      |
+v------>
+
+Out:
+0.0 units @ 0.0 degrees E
+
+//Correct Answer:
+//2.24 units @ 297 degrees - SE
+//This code snippet can not parse this diagram

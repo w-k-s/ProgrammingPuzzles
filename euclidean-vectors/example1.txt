@@ -1,0 +1,7 @@
+In:
+x---->
+     |
+     v
+
+Out:
+5.4 units @ 338.2 degrees S
