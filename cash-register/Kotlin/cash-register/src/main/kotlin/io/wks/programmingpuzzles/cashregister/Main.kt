@@ -1,5 +1,6 @@
 package io.wks.programmingpuzzles.cashregister
 
+import java.lang.Exception
 import java.math.BigDecimal
 
 enum class Currency(val value: BigDecimal) {
@@ -27,7 +28,7 @@ class CashRegister(private val contents: Array<Currency>) {
         contents.sortedByDescending { it.value }
     }
 
-    fun change(price: BigDecimal, cash: BigDecimal): String{
+    fun change(price: BigDecimal, cash: BigDecimal): String {
         if (price.compareTo(cash) == 0) return "ZERO"
         if (price.compareTo(cash) == 1) return "ERROR"
 
@@ -55,6 +56,12 @@ open class Main {
         @JvmStatic
         fun main(args: Array<String>) {
             val register = CashRegister(Currency.values())
+            val (price, cash) = Pair(args[0], args[1])
+            try {
+                println(register.change(BigDecimal(price), BigDecimal(cash)))
+            } catch (e: Exception) {
+                print("Invalid Input (${e.message})")
+            }
         }
     }
 }
