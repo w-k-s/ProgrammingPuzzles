@@ -3,7 +3,7 @@ package io.wks.programmingpuzzles.cashregister
 import java.lang.Exception
 import java.math.BigDecimal
 
-enum class Currency(val value: BigDecimal) {
+enum class Denomination(val value: BigDecimal) {
     ZERO(BigDecimal.ZERO.setScale(2)),
     PENNY(BigDecimal("0.01")),
     NICKEL(BigDecimal("0.05")),
@@ -22,31 +22,31 @@ enum class Currency(val value: BigDecimal) {
     }
 }
 
-class CashRegister(private val contents: Array<Currency>) {
+class CashRegister(private val denominations: Array<Denomination>) {
 
-    private val sortedContents by lazy {
-        contents.sortedByDescending { it.value }
+    private val sortedDenominations by lazy {
+        denominations.sortedByDescending { it.value }
     }
 
     fun change(price: BigDecimal, cash: BigDecimal): String {
         if (price.compareTo(cash) == 0) return "ZERO"
         if (price.compareTo(cash) == 1) return "ERROR"
 
-        val currencies = mutableListOf<Currency>()
+        val returnedDenominations = mutableListOf<Denomination>()
         var remainingChange = cash.subtract(price)
 
-        sortedContents
-            .filter { it != Currency.ZERO }
+        sortedDenominations
+            .filter { it != Denomination.ZERO }
             .takeWhile { remainingChange > BigDecimal.ZERO }
-            .onEach { currency ->
+            .onEach { denomination ->
 
-                while (remainingChange >= currency.value) {
-                    remainingChange = remainingChange.subtract(currency.value)
-                    currencies.add(currency)
+                while (remainingChange >= denomination.value) {
+                    remainingChange = remainingChange.subtract(denomination.value)
+                    returnedDenominations.add(denomination)
                 }
             }
 
-        return currencies.sortedBy { it.name }.joinToString(separator = ",") { it.toString() }
+        return returnedDenominations.sortedBy { it.name }.joinToString(separator = ",") { it.toString() }
     }
 
 }
@@ -55,7 +55,7 @@ open class Main {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val register = CashRegister(Currency.values())
+            val register = CashRegister(Denomination.values())
             val (price, cash) = Pair(args[0], args[1])
             try {
                 println(register.change(BigDecimal(price), BigDecimal(cash)))

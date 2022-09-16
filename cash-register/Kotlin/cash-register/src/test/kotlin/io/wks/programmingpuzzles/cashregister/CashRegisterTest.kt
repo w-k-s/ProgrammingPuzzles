@@ -19,7 +19,7 @@ internal class CashRegisterTest{
         val price = BigDecimal.TEN
 
         // THEN
-        val register = CashRegister(Currency.values())
+        val register = CashRegister(Denomination.values())
         assertEquals("ZERO", register.change(price, cash))
     }
 
@@ -32,7 +32,7 @@ internal class CashRegisterTest{
         val price = BigDecimal.TEN
 
         // THEN
-        val register = CashRegister(Currency.values())
+        val register = CashRegister(Denomination.values())
         assertEquals("ERROR", register.change(price, cash))
     }
 
@@ -43,7 +43,7 @@ internal class CashRegisterTest{
         price: BigDecimal,
         expectedChange: String
     ){
-        val register = CashRegister(Currency.values())
+        val register = CashRegister(Denomination.values())
         assertEquals(expectedChange, register.change(price, cash))
     }
 
