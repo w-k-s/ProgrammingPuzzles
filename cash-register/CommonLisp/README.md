@@ -50,7 +50,12 @@ docker run -it cash-register sh
 (in-package :cash-register-tests)
 (run! 'all-tests)
 ```
+---
+## Next Steps
 
+- [ ] Write actual tests
+- [ ] Update `.asd` to include dependencies and test-op; that should streamline running and testing?
+- [ ] Build and pass arguments to an executable
 
 ---
 

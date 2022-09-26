@@ -4,8 +4,6 @@
   (:use :cl))
 (in-package :cash-register)
 
-
-
 (defconstant +penny+ 1)
 (defconstant +nickel+ 5)
 (defconstant +dime+ 10)
@@ -18,16 +16,17 @@
 (defconstant +one-hundred+ 10000)
 
 (defun denomination-name (value)
-	(cond ((eql value +penny+) "PENNY") 
-        ((eql value +nickel+) "NICKEL") 
-        ((eql value +dime+) "DIME")
-        ((eql value +half-dollar+) "HALF DOLLAR" )
-        ((eql value +dollar+) "DOLLAR")
-        ((eql value +five+) "FIVE")
-        ((eql value +ten+) "TEN")
-        ((eql value +twenty+) "TWENTY")
-        ((eql value +fifty+) "FIFTY")
-        ((eql value +one-hundred+) "ONE HUNDRED")))
+	(cond 
+    ((eql value +penny+) "PENNY") 
+    ((eql value +nickel+) "NICKEL") 
+    ((eql value +dime+) "DIME")
+    ((eql value +half-dollar+) "HALF DOLLAR" )
+    ((eql value +dollar+) "DOLLAR")
+    ((eql value +five+) "FIVE")
+    ((eql value +ten+) "TEN")
+    ((eql value +twenty+) "TWENTY")
+    ((eql value +fifty+) "FIFTY")
+    ((eql value +one-hundred+) "ONE HUNDRED")))
 
 (defun minor-units (decimal) 
 	(floor (* decimal 100)))
