@@ -1,4 +1,10 @@
 ;gnu clisp  2.49.60
+(in-package :cl-user)
+(defpackage cash-register
+  (:use :cl))
+(in-package :cash-register)
+
+
 
 (defconstant +penny+ 1)
 (defconstant +nickel+ 5)
