@@ -12,7 +12,7 @@
   :version "0.0.1"
   :author "w-k-s"
   :license ""
-  :depends-on ()
+  :depends-on (:fiveam :cash-register)
   :components ((:module "tests"
                 :components
                 ((:file "cash-register-test"))))

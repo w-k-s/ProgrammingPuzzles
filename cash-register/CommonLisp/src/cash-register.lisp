@@ -43,6 +43,6 @@
           ((> remaining 0) (loop for denomination in cash-register 
                     			if (<= denomination remaining)
                     			collect (denomination-name denomination) into change
-                    			finally (return change))))))
+                    			finally (return (format NIL "~{~A~^,~}" (sort change #'string-lessp))))))))
 
-(print (format NIL "~{~A~^,~}" (sort (calculate-change 15.94 16.00) #'string-lessp)))
+(print (calculate-change 15.96 16.00))

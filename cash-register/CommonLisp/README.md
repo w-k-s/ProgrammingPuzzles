@@ -42,10 +42,9 @@ docker run -it cash-register sh
 
 3. From the shell, run `sbcl`.
 
-4. Run the followign commands in sbcl
+4. Run the following commands in sbcl
 
 ``` sbcl
-(ql:quickload :fiveam)
 (ql:quickload :cash-register/tests)
 (in-package :cash-register-tests)
 (run! 'all-tests)
@@ -54,7 +53,6 @@ docker run -it cash-register sh
 ## Next Steps
 
 - [ ] Write actual tests
-- [ ] Update `.asd` to include dependencies and test-op; that should streamline running and testing?
 - [ ] Build and pass arguments to an executable
 
 ---
