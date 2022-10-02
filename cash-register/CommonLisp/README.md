@@ -52,7 +52,6 @@ docker run -it cash-register sh
 ---
 ## Next Steps
 
-- [ ] Write actual tests
 - [ ] Build and pass arguments to an executable
 
 ---
