@@ -9,6 +9,7 @@
 (defconstant +dime+ 10)
 (defconstant +half-dollar+ 50)
 (defconstant +dollar+ 100)
+(defconstant +two+ 200)
 (defconstant +five+ 500)
 (defconstant +ten+ 1000)
 (defconstant +twenty+ 2000)
@@ -16,12 +17,13 @@
 (defconstant +one-hundred+ 10000)
 
 (defun denomination-name (value)
-	(cond 
+  (cond 
     ((eql value +penny+) "PENNY") 
     ((eql value +nickel+) "NICKEL") 
     ((eql value +dime+) "DIME")
     ((eql value +half-dollar+) "HALF DOLLAR" )
     ((eql value +dollar+) "DOLLAR")
+    ((eql value +two+) "TWO")
     ((eql value +five+) "FIVE")
     ((eql value +ten+) "TEN")
     ((eql value +twenty+) "TWENTY")
@@ -29,7 +31,7 @@
     ((eql value +one-hundred+) "ONE HUNDRED")))
 
 (defun minor-units (decimal) 
-	(floor (* decimal 100)))
+  (floor (* decimal 100)))
 
 (defun calculate-change (price cash)
     (let* (
@@ -37,12 +39,13 @@
       (cash-minor-units (minor-units cash))
       (change (list))
       (remaining (- cash-minor-units price-minor-units))
-      (cash-register (list +one-hundred+ +fifty+ +twenty+ +ten+ +five+ +dollar+  +half-dollar+ +dime+ +nickel+ +penny+)))
+      (cash-register (list +one-hundred+ +fifty+ +twenty+ +ten+ +five+ +two+ +dollar+  +half-dollar+ +dime+ +nickel+ +penny+)))
       (cond ((eql remaining 0) "ZERO")
           ((< remaining 0) "ERROR")
           ((> remaining 0) (loop for denomination in cash-register 
-                    			if (<= denomination remaining)
-                    			collect (denomination-name denomination) into change
-                    			finally (return (format NIL "~{~A~^,~}" (sort change #'string-lessp))))))))
+                          if (<= denomination remaining)
+                          do (setf remaining (- remaining denomination))
+                          and collect (denomination-name denomination) into change
+                          finally (return (format NIL "~{~A~^,~}" (sort change #'string-lessp))))))))
 
-(print (calculate-change 15.96 16.00))
+(print (calculate-change 15 20.00))
